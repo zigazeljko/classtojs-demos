@@ -1,0 +1,17 @@
+inputs = ["minecraft4k/M.jar"]
+minify = true
+optimize = true
+
+[natives]
+"M.getGraphics:()Ljava/awt/Graphics;" = { Var = "null" }
+"M.isActive:()Z" = { Var = "1" }
+"M.start:()V" = "None"
+"java.applet.Applet.<init>:()V" = "None"
+"java.awt.Graphics.drawImage:(Ljava/awt/Image;IIIILjava/awt/image/ImageObserver;)Z" = { Func = "redraw" }
+"java.awt.image.BufferedImage.<init>:(III)V" = "None"
+"java.awt.image.BufferedImage.getRaster:()Ljava/awt/image/WritableRaster;" = "None"
+"java.awt.image.DataBufferInt.getData:()[I" = { Var = "buffer" }
+"java.awt.image.WritableRaster.getDataBuffer:()Ljava/awt/image/DataBuffer;" = "None"
+"java.util.Random.<init>:()V" = "None"
+"java.util.Random.nextInt:(I)I" = { Func = "nextint" }
+"java.util.Random.setSeed:(J)V" = "None"

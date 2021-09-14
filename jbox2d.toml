@@ -1,0 +1,15 @@
+inputs = ["jbox2d/Scene.class", "jbox2d/jbox2d-library-2.2.1.1.jar", "harmony/luni.jar", "harmony/luni-kernel-stubs.jar"]
+minify = true
+optimize = true
+
+[natives]
+"Scene.contextArc:(DDDDDZ)V" = { Func = "context.arc" }
+"Scene.contextBeginPath:()V" = { Func = "context.beginPath" }
+"Scene.contextClosePath:()V" = { Func = "context.closePath" }
+"Scene.contextLineTo:(DD)V" = { Func = "context.lineTo" }
+"Scene.contextMoveTo:(DD)V" = { Func = "context.moveTo" }
+"Scene.contextRestore:()V" = { Func = "context.restore" }
+"Scene.contextRotate:(D)V" = { Func = "context.rotate" }
+"Scene.contextSave:()V" = { Func = "context.save" }
+"Scene.contextStroke:()V" = { Func = "context.stroke" }
+"Scene.contextTranslate:(DD)V" = { Func = "context.translate" }

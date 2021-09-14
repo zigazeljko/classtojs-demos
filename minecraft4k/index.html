@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<style>body{background-color:#333333}#output{display:block;margin:auto;width:856px;height:480px;image-rendering:crisp-edges}</style>
+<canvas id="output" width="214" height="120"></canvas>
+<script src="M.js"></script>
+<script>
+var ctx=document.getElementById("output").getContext("2d"),buffer=new Int32Array(25680),app=new M();
+function nextint(o,r){return Math.random()*r|0}
+function redraw(){var d=new ImageData(214,120),s=new Uint8Array(buffer.buffer),b=d.data,i=0;for(;i<102720;i+=4)b[i]=s[i+2],b[i+1]=s[i+1],b[i+2]=s[i],b[i+3]=255;ctx.putImageData(d,0,0)}
+function $javamillitime(){return BigInt(Date.now())}
+function $javathreadsleep(){return new Promise(function(r){requestAnimationFrame(r)})}
+function sendkey(i,e){e.preventDefault();app.handleEvent({ba:i,ea:e.keyCode|32})}
+function sendmouse(i,e){e.preventDefault();app.handleEvent({ba:i,ca:e.clientX-output.offsetLeft,da:e.clientY-output.offsetTop,fa:e.button?4:0})}
+app.$init();
+app.run();
+window.onkeydown=sendkey.bind(null,401);
+window.onkeyup=sendkey.bind(null,402);
+output.onmousedown=sendmouse.bind(null,501);
+output.onmouseup=sendmouse.bind(null,502);
+output.onmousemove=sendmouse.bind(null,503);
+output.onmouseleave=sendmouse.bind(null,505);
+</script>
+</html>
