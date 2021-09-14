@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+<canvas id="benchmark-canvas" width="600" height="600"></canvas>
+<table>
+<tr><th>Second</th><th>Time spent [millis]</th></tr>
+<tbody id="result-table-body"></tbody>
+</table>
+<script src="../runtime.js"></script>
+<script src="main.js"></script>
+<script>
+  var canvas = document.getElementById("benchmark-canvas");
+  var resultTableBody = document.getElementById("result-table-body");
+  var context = canvas.getContext("2d");
+  var scene = new Scene()
+  var startMillisecond = Date.now();
+  var currentSecond = 0;
+  var timeSpentCalculating = 0;
+  var totalTime = 0;
+  scene.$init();
+  function makeStep() {
+    var start = performance.now();
+    scene.calculate();
+    var end = performance.now();
+    var second = Math.floor((Date.now() - startMillisecond) / 1000);
+    if (second > currentSecond) {
+      resultTableBody.insertAdjacentHTML("beforeend", "<tr><td>" + second + "</td><td>" + timeSpentCalculating + "</td></tr>");
+      totalTime += timeSpentCalculating;
+      timeSpentCalculating = 0;
+      currentSecond = second;
+    }
+    timeSpentCalculating += end - start;
+    render();
+    setTimeout(makeStep, scene.timeUntilNextStep());
+  }
+  function render() {
+    context.fillStyle = "white";
+    context.strokeStyle = "grey";
+    context.fillRect(0, 0, 600, 600);
+    context.save();
+    context.translate(0, 600);
+    context.scale(1, -1);
+    context.scale(100, 100);
+    context.lineWidth = 0.01;
+    scene.render(context);
+    context.restore();
+  }
+  window.onload = function () {
+    makeStep();
+  };
+</script>
+</html>
